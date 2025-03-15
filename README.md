@@ -28,7 +28,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Create a Resource Group and two Virtual Machines
 - Observe ICMP Traffic
 - Configure a Firewall (Network Security Group)
-- Observe SSH, DNS, DHCP, and RDP traffic 
+- Observe DNS, DHCP, and RDP traffic 
 
 <h2>Actions and Observations</h2>
 
@@ -74,9 +74,19 @@ First step in this process is to create a Resource Group. This going to help mon
   Observing the ping and the traffic , you can see the request timed out on the command line in powershell since the inbound rule was denied. In wireshark you'll notice that between both VMs private address theres only a request. Because we changed the rule, there won't be a reply and request with the traffic. Denying any traffic for the ICMP protocol.  
 </p>
 <p>
-  
+  <img src="https://i.imgur.com/p9znFwj.jpeg" height="50%" width="50%" alt="Inbound rule"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+We are going to change the inboiund rule again to allow the ICMP traffic to resume. Now whenever this happen you will see the ping start to go down the page again as well as the reply and request start to resume with the ICMP traffic. 
+</p>
+
+<p>
+  <img src="https://i.imgur.com/S5OUaSB.jpeg" height="50%" width="50%" alt="RDP Traffic"/>
+  <img src="https://i.imgur.com/K2ncQGm.jpeg" height="50%" width="50%" alt="DNS Traffic"/>
+  <img src="https://i.imgur.com/9EGw44k.jpeg" height="50%" width="50%" alt="DHCP Traffic"/>
+</p>
+<p>
+Here we are filtering traffic for three different protocols RDP, DNS, and DHCP. Watching the trffic being sent and recieved from private ip addresses/ip addresses. For RDP you can either type just RDP or tcp.port==3389. For DNS which is tcp and udp port 53, typing DNS will work. Lastly, for DHCP typing udp.port==68 and udp.port==67 will work as well. 
 </p>
 <br />
+
