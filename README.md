@@ -3,12 +3,8 @@
 </p>
 
 <h1>Network Security Groups (NSGs) and Inspecting Traffic Between Azure Virtual Machines</h1>
-In this tutorial, we observe various network traffic to and from Azure Virtual Machines with Wireshark as well as experiment with Network Security Groups. <br />
+In this Project, we observe various network traffic to and from Azure Virtual Machines with Wireshark as well as experiment with Network Security Groups. <br />
 
-
-<h2>Video Demonstration</h2>
-
-- ### [YouTube: Azure Virtual Machines, Wireshark, and Network Security Groups](https://www.youtube.com)
 
 <h2>Environments and Technologies Used</h2>
 
@@ -28,17 +24,20 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Create a Resource Group and two Virtual Machines
 - Observe ICMP Traffic
 - Configure a Firewall (Network Security Group)
-- Observe DNS, DHCP, and RDP traffic 
+- Observe DNS, DHCP, SSH, and RDP traffic 
 
 <h2>Actions and Observations</h2>
 
+<h4>Create a Resource Group and two Virtual Machines:</h4>
+
 <p>
 <img src="https://i.imgur.com/jJAVRlY.jpeg" height="80%" width="80%" alt="Resource Group"/>
-  <img src="https://i.imgur.com/ZQWyRUm.jpeg" height="80%" width="80%" alt="Virtual Machines"/>
+<img src="https://i.imgur.com/ZQWyRUm.jpeg" height="80%" width="80%" alt="Virtual Machines"/>
 </p>
 <p>
 First step in this process is to create a Resource Group. This going to help monitor and maintain the two Virtual Machines we are going to create as well. When creating this, make sure to place it in the region where your located. Once this is finsihed, we will the start on the VMs. Head over to your home screen and click on create VM, we need a windows and a linux VM. While the first VM is creating it will also generate a new virtual network/subnet. When the second VM is created, we will put that one on the previous vnet/subnet mask that was generated. Lets make sure to place both VMs on the same resource group and in the same region. Authenicate your username/password for both and write them down so you don't forget.  
 </p>
+<br />
 
 <p>
   <img src="https://i.imgur.com/mu2o8Za.png" height="45%" width="45%" alt="Remote Desktop"/>  <img src="https://i.imgur.com/PHi6H7M.jpeg" height="45%" width="45%" alt="Remote Desktop"/>
@@ -48,6 +47,7 @@ First step in this process is to create a Resource Group. This going to help mon
 </p>
 <br />
 
+<h4>Observe ICMP Traffic:</h4>
 <p>
 <img src="https://i.imgur.com/bVDOA4e.jpeg" height="35%" width="35%" alt="ICMP filtered"/>  <img src="https://i.imgur.com/83m9GwC.jpeg" height="45%" width="45%" alt="ICMP filtered"/>
 <img src="https://i.imgur.com/8xWSvVD.jpeg" height="80%" width="80%" alt="Linux Private Address"/> 
@@ -63,23 +63,35 @@ First step in this process is to create a Resource Group. This going to help mon
 <p>
   Here we are intiiating a nonstop ping, observing the ping continously as it goes down the page. To make this happen we enter ping 10.0.0.0 -t in the powershell. 
 </p>
+<br />
+
+<h4>Configure a Firewall (Network Security Group):</h4>
+
 <p>
   <img src="https://i.imgur.com/gLuHcWN.jpeg" height="80%" width="80%" alt="Inbound rule"/>
 </p>
 <p>
   In the picture above we are going to deny the traffic for icmp by going to the network security group and change the rule to deny. For the port, source, and destination theres no specific one so we will put any. When this is finish, in powershell the ping will look different in the command line and the traffic will look different in wireshark.   
 </p>
-   <img src="https://i.imgur.com/Nf4olHq.jpeg" height="50%" width="50%" alt="Inbound rule"/> <img src="https://i.imgur.com/9vxLTkO.jpeg" height="60%" width="60%" alt="Inbound rule"/> 
+<br />
+
 <p>
-  Observing the ping and the traffic , you can see the request timed out on the command line in powershell since the inbound rule was denied. In wireshark you'll notice that between both VMs private address theres only a request. Because we changed the rule, there won't be a reply and request with the traffic. Denying any traffic for the ICMP protocol.  
+  <img src="https://i.imgur.com/Nf4olHq.jpeg" height="50%" width="50%" alt="Inbound rule"/> <img src="https://i.imgur.com/9vxLTkO.jpeg" height="60%" width="60%" alt="Inbound rule"/> 
 </p>
+<p>
+  Observing the ping and the traffic , you can see the request timed out on the command line in powershell since the inbound rule was denied. In wireshark you'll notice that between both VMs private address theres only a request. Because we changed the rule, there won't be a reply and request with the traffic. Denying any traffic for the ICMP protocol. 
+</p>
+<br />
+
 <p>
   <img src="https://i.imgur.com/p9znFwj.jpeg" height="50%" width="50%" alt="Inbound rule"/>
 </p>
 <p>
 We are going to change the inboiund rule again to allow the ICMP traffic to resume. Now whenever this happen you will see the ping start to go down the page again as well as the reply and request start to resume with the ICMP traffic. 
 </p>
+<br />
 
+<h4> Observe DNS, DHCP, SSH, and RDP traffic:</h4>
 <p>
   <img src="https://i.imgur.com/S5OUaSB.jpeg" height="50%" width="50%" alt="RDP Traffic"/>
   <img src="https://i.imgur.com/K2ncQGm.jpeg" height="50%" width="50%" alt="DNS Traffic"/>
