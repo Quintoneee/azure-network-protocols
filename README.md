@@ -96,9 +96,10 @@ We are going to change the inboiund rule again to allow the ICMP traffic to resu
   <img src="https://i.imgur.com/S5OUaSB.jpeg" height="50%" width="50%" alt="RDP Traffic"/>
   <img src="https://i.imgur.com/K2ncQGm.jpeg" height="50%" width="50%" alt="DNS Traffic"/>
   <img src="https://i.imgur.com/9EGw44k.jpeg" height="50%" width="50%" alt="DHCP Traffic"/>
+  <img src="https://i.imgur.com/6HM3nvR.jpeg" height="50%" width="50%" alt="SSH Traffic"/>
 </p>
 <p>
-Here we are filtering traffic for three different protocols RDP, DNS, and DHCP. Watching the trffic being sent and recieved from private ip addresses/ip addresses. For RDP you can either type just RDP or tcp.port==3389. For DNS which is tcp and udp port 53, typing DNS will work. Lastly, for DHCP typing udp.port==68 and udp.port==67 will work as well. 
+Here we are filtering traffic for four different protocols RDP, DNS, and DHCP. Watching the traffic being sent and recieved from private ip addresses/ip addresses. For RDP you can either type just RDP or tcp.port==3389. For DNS which is tcp and udp port 53, typing DNS will work. Lastly, for DHCP typing udp.port==68 and udp.port==67 will work as well. For SSH you can just type in SSH and that will work.  
 </p>
 <br />
 
