@@ -35,7 +35,7 @@ In this Project, we observe various network traffic to and from Azure Virtual Ma
 <img src="https://i.imgur.com/ZQWyRUm.jpeg" height="80%" width="80%" alt="Virtual Machines"/>
 </p>
 <p>
-First step in this process is to create a Resource Group. This going to help monitor and maintain the two Virtual Machines we are going to create as well. When creating this, make sure to place it in the region where your located. Once this is finsihed, we will the start on the VMs. Head over to your home screen and click on create VM, we need a windows and a linux VM. While the first VM is creating it will also generate a new virtual network/subnet. When the second VM is created, we will put that one on the previous vnet/subnet mask that was generated. Lets make sure to place both VMs on the same resource group and in the same region. Authenicate your username/password for both and write them down so you don't forget.  
+The first step in this process is to create a Resource Group. This going to help monitor and maintain the two Virtual Machines we are going to create as well. When creating this, make sure to place it in the region where you're located. Once this is finished, we will start on the VMs. Head over to your home screen and click on Create VM. We need a Windows and a Linux VM. While the first VM is creating, it will also generate a new virtual network/subnet. When the second VM is created, we will put that one on the previous vnet/subnet mask that was generated. Let's make sure to place both VMs in the same resource group and the same region. Authenticate your username/password for both and write them down so you don't forget.  
 </p>
 <br />
 
@@ -43,7 +43,7 @@ First step in this process is to create a Resource Group. This going to help mon
   <img src="https://i.imgur.com/mu2o8Za.png" height="45%" width="45%" alt="Remote Desktop"/>  <img src="https://i.imgur.com/PHi6H7M.jpeg" height="45%" width="45%" alt="Remote Desktop"/>
 </p>
 <p>
-  Now its time to get into the remote desktop. go to your start menu and pull it up. once there you will go the windows virtaul machine and get the public ip address. which you can find by going to windows vm and it will pull up certain things such as the public ip address, private address, and settings etc; Take that public ip address and put it in the remote destop, it will ask you for the username/password you created for the windows vm.
+  Now its time to get into the remote desktop. go to your start menu and pull it up. Once there, you will go to the Windows virtual machine and get the public ip address. which you can find by going to windows vm and it will pull up certain things such as the public ip address, private address, and settings, etc Take that public IP address and put it in the remote destop, it will ask you for the username/password you created for the windows vm.
 </p>
 <br />
 
@@ -53,7 +53,7 @@ First step in this process is to create a Resource Group. This going to help mon
 <img src="https://i.imgur.com/8xWSvVD.jpeg" height="80%" width="80%" alt="Linux Private Address"/> 
 </p>
 <p>
- Inside of the windows vm we will pull up wirehsark. wireshark will help us open a packet capture as well as filter for icmp traffic between both vms. Next we are going to get the private address from the linux vm and ping it in powershell and see how the traffic is on wireshark.  Once the you ping the private address, you will be able to see the reply and request between the two vms as well as where its coming from. The traffic is between a windows 10 machine and linux machine.
+ Inside the Windows VM, we will pull up Wireshark. That will help us open a packet capture as well as filter for ICMP traffic between both VMs. Next, we are going to get the private address from the Linux VM and ping it in PowerShell, and see how the traffic is on Wireshark.  Once you ping the private address, you will be able to see the reply and request between the two VMs as well as where it's coming from. The traffic is between a Windows 10 machine and a Linux machine.
 </p>
 <br />
 
@@ -61,7 +61,7 @@ First step in this process is to create a Resource Group. This going to help mon
 <img src="https://i.imgur.com/DgFkG1n.jpeg" height="40%" width="40%" alt="Nonstop Ping"/>
 </p>
 <p>
-  Here we are intiiating a nonstop ping, observing the ping continously as it goes down the page. To make this happen we enter ping 10.0.0.0 -t in the powershell. 
+  Here we are initiating a nonstop ping, observing the ping continuously as it goes down the page. To make this happen, we enter ping 10.0.0.0 -t in the PowerShell. 
 </p>
 <br />
 
@@ -71,7 +71,7 @@ First step in this process is to create a Resource Group. This going to help mon
   <img src="https://i.imgur.com/gLuHcWN.jpeg" height="80%" width="80%" alt="Inbound rule"/>
 </p>
 <p>
-  In the picture above we are going to deny the traffic for icmp by going to the network security group and change the rule to deny. For the port, source, and destination theres no specific one so we will put any. When this is finish, in powershell the ping will look different in the command line and the traffic will look different in wireshark.   
+  In the picture above, we are going to deny the traffic for ICMP by going to the network security group and changing the rule to deny. For the port, source, and destination, there's no specific one, so we will put any. When this is finished, in PowerShell, the ping will look different in the command line, and the traffic will look different in Wireshark.   
 </p>
 <br />
 
@@ -79,7 +79,7 @@ First step in this process is to create a Resource Group. This going to help mon
   <img src="https://i.imgur.com/Nf4olHq.jpeg" height="50%" width="50%" alt="Inbound rule"/> <img src="https://i.imgur.com/9vxLTkO.jpeg" height="60%" width="60%" alt="Inbound rule"/> 
 </p>
 <p>
-  Observing the ping and the traffic , you can see the request timed out on the command line in powershell since the inbound rule was denied. In wireshark you'll notice that between both VMs private address theres only a request. Because we changed the rule, there won't be a reply and request with the traffic. Denying any traffic for the ICMP protocol. 
+  Observing the ping and the traffic, you can see the request timed out on the command line in PowerShell since the inbound rule was denied. In Wireshark, you'll notice that between the VMs' private addresses, there's only a request. Because we changed the rule, there won't be a reply or request with the traffic. Denying any traffic for the ICMP protocol. 
 </p>
 <br />
 
@@ -87,7 +87,7 @@ First step in this process is to create a Resource Group. This going to help mon
   <img src="https://i.imgur.com/p9znFwj.jpeg" height="50%" width="50%" alt="Inbound rule"/>
 </p>
 <p>
-We are going to change the inboiund rule again to allow the ICMP traffic to resume. Now whenever this happen you will see the ping start to go down the page again as well as the reply and request start to resume with the ICMP traffic. 
+We are going to change the inbound rule again to allow the ICMP traffic to resume. Now, whenever this happens, you will see the ping start to go down the page again as well as the reply and request start to resume with the ICMP traffic. 
 </p>
 <br />
 
@@ -99,7 +99,7 @@ We are going to change the inboiund rule again to allow the ICMP traffic to resu
   <img src="https://i.imgur.com/6HM3nvR.jpeg" height="50%" width="50%" alt="SSH Traffic"/>
 </p>
 <p>
-Here we are filtering traffic for four different protocols RDP, DNS, and DHCP. Watching the traffic being sent and recieved from private ip addresses/ip addresses. For RDP you can either type just RDP or tcp.port==3389. For DNS which is tcp and udp port 53, typing DNS will work. Lastly, for DHCP typing udp.port==68 and udp.port==67 will work as well. For SSH you can just type in SSH and that will work.  
+Here, we are filtering traffic for four different protocols: RDP, DNS, and DHCP. Watching the traffic being sent and received from private IP addresses/IP addresses. For RDP, you can either type just RDP or tcp.port==3389. For DNS, which is TCP and UDP port 53, typing DNS will work. Lastly, for DHCP typing udp.port==68 and udp.port==67 will work as well. For SSH, you can just type in SSH and that will work.  
 </p>
 <br />
 
